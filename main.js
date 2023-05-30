@@ -32,7 +32,7 @@ function onSubmit(e){
     console.log(myObj)
 
     //adding to crud
-    axios.post('https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan', myObj)
+    axios.post('https://crudcrud.com/api/4bb9d1a15df74a26afce16286c35e011/dukaan', myObj)
     .then(response => {
         displayData(response.data)
     }).catch(err => {
@@ -45,7 +45,7 @@ function onSubmit(e){
 // function to display data from crud
 function displayData(obj){
     let li = document.createElement('li');
-    li.innerHTML = obj.iname + ' ' + obj.idesc + ' ' + obj.iprice + ' ' + obj.iquant;
+    li.innerHTML = obj.iname + ' - ' + obj.idesc + ' - ' + obj.iprice + ' - ' + obj.iquant;
 
 
     let but1 = document.createElement('input');
@@ -55,20 +55,29 @@ function displayData(obj){
     but1.id = 'buy1';
     li.appendChild(but1);
 
-    but1.onclick = function() {
-        // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`);
-        axios.put(`https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan/${obj._id}`, {
-            iname: obj.iname,
-            idesc: obj.idesc,
-            iprice: obj.iprice,
-            iquant: obj.iquant-1
-        }).then(response => {
-            console.log(`3 quantites of ${obj.iname} is bought for ${obj.iprice}INR`)
-        }).catch(err => {
-            console.log(err)
-        })
-        // location.reload()
-    }
+    but1.onclick = async function() {
+        // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`)
+                axios.put(`https://crudcrud.com/api/4bb9d1a15df74a26afce16286c35e011/dukaan/${obj._id}`, {
+                  iname: obj.iname,
+                  idesc: obj.idesc,
+                  iprice: obj.iprice,
+                  iquant: obj.iquant-1
+            }).then(response => {
+                location.reload();
+            }).catch(err => {
+                console.log(err)
+            })
+              
+              
+    
+    //     .then((response) => {
+    //         console.log(response);
+    //         location.reload()
+    // })
+}
+        //console.log(response)
+    // }).catch(err => {
+    //     console.log(err)
 
     let but2 = document.createElement('input');
     but2.type = 'button';
@@ -77,17 +86,18 @@ function displayData(obj){
     but2.id = 'buy2';
     li.appendChild(but2);
 
-    but2.onclick = function() {
+    but2.onclick = async function() {
         // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`);
-        axios.put(`https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan/${obj._id}`, {
+        axios.put(`https://crudcrud.com/api/4bb9d1a15df74a26afce16286c35e011/dukaan/${obj._id}`, {
             iname: obj.iname,
             idesc: obj.idesc,
             iprice: obj.iprice,
             iquant: obj.iquant-2
         }).then(response => {
-            console.log(`3 quantites of ${obj.iname} is bought for ${2*obj.iprice}INR`)
-        }).catch(err => {
+            location.reload();
+        }).catch(async err => {
             console.log(err)
+            //location.reload();
         })
         //window.location.reload()
     }
@@ -102,26 +112,27 @@ function displayData(obj){
     li.appendChild(but3);
 
 
-    but3.onclick = function() {
+    but3.onclick = async  function() {
         // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`);
-        axios.put(`https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan/${obj._id}`, {
+        axios.put(`https://crudcrud.com/api/4bb9d1a15df74a26afce16286c35e011/dukaan/${obj._id}`, {
             iname: obj.iname,
             idesc: obj.idesc,
             iprice: obj.iprice,
             iquant: obj.iquant-3
         }).then(response => {
-            console.log(`3 quantites of ${obj.iname} is bought for ${3*obj.iprice}INR`)
+            location.reload();
         }).catch(err => {
             console.log(err)
         })
         //location.reload()
     }
     ul.appendChild(li);
+    //location.reload();
 }
 
 
 window.addEventListener("DOMContentLoaded", () => {
-    axios.get("https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan")
+    axios.get("https://crudcrud.com/api/4bb9d1a15df74a26afce16286c35e011/dukaan")
     .then(response => {
         for(var i=0; i<response.data.length; i++){
             displayData(response.data[i]);
