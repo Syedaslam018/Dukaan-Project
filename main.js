@@ -32,13 +32,14 @@ function onSubmit(e){
     console.log(myObj)
 
     //adding to crud
-    axios.post('https://crudcrud.com/api/bee8936f899f48bd9c058cb95e6a259e/dukaan', myObj)
+    axios.post('https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan', myObj)
     .then(response => {
         displayData(response.data)
     }).catch(err => {
         console.log(err)
     })
-
+    //clearing the form
+    myForm.reset()
 }
 
 // function to display data from crud
@@ -56,7 +57,7 @@ function displayData(obj){
 
     but1.onclick = function() {
         // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`);
-        axios.put(`https://crudcrud.com/api/bee8936f899f48bd9c058cb95e6a259e/dukaan/${obj._id}`, {
+        axios.put(`https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan/${obj._id}`, {
             iname: obj.iname,
             idesc: obj.idesc,
             iprice: obj.iprice,
@@ -77,7 +78,7 @@ function displayData(obj){
 
     but2.onclick = function() {
         // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`);
-        axios.put(`https://crudcrud.com/api/bee8936f899f48bd9c058cb95e6a259e/dukaan/${obj._id}`, {
+        axios.put(`https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan/${obj._id}`, {
             iname: obj.iname,
             idesc: obj.idesc,
             iprice: obj.iprice,
@@ -101,7 +102,7 @@ function displayData(obj){
 
     but3.onclick = function() {
         // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`);
-        axios.put(`https://crudcrud.com/api/bee8936f899f48bd9c058cb95e6a259e/dukaan/${obj._id}`, {
+        axios.put(`https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan/${obj._id}`, {
             iname: obj.iname,
             idesc: obj.idesc,
             iprice: obj.iprice,
@@ -117,7 +118,7 @@ function displayData(obj){
 
 
 window.addEventListener("DOMContentLoaded", () => {
-    axios.get("https://crudcrud.com/api/bee8936f899f48bd9c058cb95e6a259e/dukaan")
+    axios.get("https://crudcrud.com/api/c750bbf40970420a88efa72ac950815e/dukaan")
     .then(response => {
         for(var i=0; i<response.data.length; i++){
             displayData(response.data[i]);
