@@ -63,10 +63,11 @@ function displayData(obj){
             iprice: obj.iprice,
             iquant: obj.iquant-1
         }).then(response => {
-            console.log(response.data)
+            console.log(`3 quantites of ${obj.iname} is bought for ${obj.iprice}INR`)
         }).catch(err => {
             console.log(err)
         })
+        // location.reload()
     }
 
     let but2 = document.createElement('input');
@@ -84,10 +85,11 @@ function displayData(obj){
             iprice: obj.iprice,
             iquant: obj.iquant-2
         }).then(response => {
-            console.log(response.data)
+            console.log(`3 quantites of ${obj.iname} is bought for ${2*obj.iprice}INR`)
         }).catch(err => {
             console.log(err)
         })
+        //window.location.reload()
     }
 
 
@@ -108,10 +110,11 @@ function displayData(obj){
             iprice: obj.iprice,
             iquant: obj.iquant-3
         }).then(response => {
-            console.log(response.data)
+            console.log(`3 quantites of ${obj.iname} is bought for ${3*obj.iprice}INR`)
         }).catch(err => {
             console.log(err)
         })
+        //location.reload()
     }
     ul.appendChild(li);
 }
