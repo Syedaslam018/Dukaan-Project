@@ -1,3 +1,6 @@
+try {
+
+
 let myForm = document.getElementById('myForm');
 let ul = document.getElementById('items');
 
@@ -22,22 +25,24 @@ let myObj = {
 
 
 //event function
-function onSubmit(e){
+async function onSubmit(e){
     e.preventDefault();
     
     myObj.iname = itemName.value;
     myObj.idesc = itemDesc.value;
     myObj.iprice = itemPrice.value;
     myObj.iquant = itemQuant.value;
-    console.log(myObj)
+    //console.log(myObj)
 
     //adding to crud
-    axios.post('https://crudcrud.com/api/29071e34650a41e1bd27dfc51b2b5b31/dukaan', myObj)
-    .then(response => {
-        displayData(response.data)
-    }).catch(err => {
-        console.log(err)
-    })
+    let post = await axios.post('https://crudcrud.com/api/2b2f0c32ed634b41b7824354c0110763/dukaan', myObj)
+    // .then(response => {
+    //     displayData(response.data)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+    //console.log(post.data)
+    displayData(post.data);
     //clearing the form
     myForm.reset()
 }
@@ -57,16 +62,14 @@ function displayData(obj){
 
     //buy 1 button function
     but1.onclick = async function() {
-                axios.put(`https://crudcrud.com/api/29071e34650a41e1bd27dfc51b2b5b31/dukaan/${obj._id}`, {
+               const but1put = await axios.put(`https://crudcrud.com/api/2b2f0c32ed634b41b7824354c0110763/dukaan/${obj._id}`, {
                   iname: obj.iname,
                   idesc: obj.idesc,
                   iprice: obj.iprice,
                   iquant: obj.iquant-1
-            }).then(response => {
-                location.reload();
-            }).catch(err => {
-                console.log(err)
             })
+
+            location.reload();
               
     }
 
@@ -80,17 +83,14 @@ function displayData(obj){
     //buy2 onclick function
     but2.onclick = async function() {
         // console.log(`https://crudcrud.com/api/fd7cfaae0cbc4ac79bee165522bc2512/dukaan/${obj._id}`);
-        axios.put(`https://crudcrud.com/api/29071e34650a41e1bd27dfc51b2b5b31/dukaan/${obj._id}`, {
+        let but2put = await axios.put(`https://crudcrud.com/api/2b2f0c32ed634b41b7824354c0110763/dukaan/${obj._id}`, {
             iname: obj.iname,
             idesc: obj.idesc,
             iprice: obj.iprice,
             iquant: obj.iquant-2
-        }).then(response => {
-            location.reload();
-        }).catch(async err => {
-            console.log(err)
-            
         })
+            
+        location.reload();
     }
     let but3 = document.createElement('input');
     but3.type = 'button';
@@ -101,16 +101,13 @@ function displayData(obj){
 
     //buy3 onclick function
     but3.onclick = async  function() {
-        axios.put(`https://crudcrud.com/api/29071e34650a41e1bd27dfc51b2b5b31/dukaan/${obj._id}`, {
+        let but3put = await axios.put(`https://crudcrud.com/api/2b2f0c32ed634b41b7824354c0110763/dukaan/${obj._id}`, {
             iname: obj.iname,
             idesc: obj.idesc,
             iprice: obj.iprice,
             iquant: obj.iquant-3
-        }).then(response => {
-            location.reload();
-        }).catch(err => {
-            console.log(err)
         })
+        location.reload();
         
     }
     ul.appendChild(li);
@@ -118,7 +115,7 @@ function displayData(obj){
 
 
 window.addEventListener("DOMContentLoaded", () => {
-    axios.get("https://crudcrud.com/api/29071e34650a41e1bd27dfc51b2b5b31/dukaan")
+    axios.get("https://crudcrud.com/api/2b2f0c32ed634b41b7824354c0110763/dukaan")
     .then(response => {
         for(var i=0; i<response.data.length; i++){
             displayData(response.data[i]);
@@ -127,3 +124,8 @@ window.addEventListener("DOMContentLoaded", () => {
         console.log(err);
     })
 })
+}
+
+catch(error) {
+    console.log(error)
+}
